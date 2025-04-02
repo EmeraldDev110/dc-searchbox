@@ -2,6 +2,22 @@
 
 A modular, responsive search interface built with Next.js, TypeScript, and Tailwind CSS. This project was developed as part of a frontend evaluation for Digital Creative, focused on delivering a pixel-accurate, accessible, and performant UI.
 
+## Feature Evaluation
+
+| Criteria                                                                 | Status   | Notes                                                                 |
+|--------------------------------------------------------------------------|----------|-----------------------------------------------------------------------|
+| Developed using React or Vue                                             | ✅       | Built with Next.js (React App Router)                                |
+| Split into logical reusable components                                   | ✅       | SearchBar, Tag, ResultItem, SearchBox, StatusBar, etc.               |
+| Includes required components (Search bar, Tag, Result item)             | ✅       | All required components are implemented                              |
+| Styling with Tailwind CSS or Sass                                        | ✅       | Tailwind CSS with custom tokens via CSS variables                    |
+| README with thinking process and install instructions                    | ✅       | Included in this document                                            |
+| TypeScript used throughout                                               | ✅       | Full type safety with shared interface (`Tool`)                      |
+| Pixel-perfect implementation                                             | ✅       | Matches Figma specs on spacing, typography, layout                   |
+| Uses up-to-date frameworks/tools                                         | ✅       | Next.js App Router, next/font, Tailwind 3, modern patterns           |
+| CSS animations / transitions                                             | ✅       | Applied to icons, input borders, hover effects                       |
+| Keyboard controls (Tab navigation, focus-visible)                       | ✅       | Fully accessible tags, input, and result cards                       |
+| Improved UI/UX based on judgment                                         | ✅       | Added accessibility, debouncing, keyboard support, error visuals     |
+
 ## Features
 
 - Component-driven architecture using modern React (App Router)
