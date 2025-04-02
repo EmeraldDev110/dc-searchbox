@@ -10,9 +10,11 @@ interface ResultItemProps {
 export default function ResultItem({ tool }: ResultItemProps) {
   return (
     <div
-      className="flex items-center justify-between w-full h-[100px] p-3 pr-5 gap-5 rounded-[12px] cursor-pointer hover:bg-gray group transition"
+      tabIndex={0}
+      role="button"
+      className="flex items-center justify-between w-full h-[100px] p-3 pr-5 gap-5 rounded-[12px] cursor-pointer hover:bg-gray focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary group transition"
     >
-      {/* Logo */}
+      {/* Tool logo (fixed size, responsive inside container) */}
       <div className="relative w-[76px] h-[76px] rounded-md overflow-hidden shrink-0">
         <Image
           src={tool.image}
@@ -23,7 +25,7 @@ export default function ResultItem({ tool }: ResultItemProps) {
         />
       </div>
 
-      {/* Content */}
+      {/* Title and description text content */}
       <div className="flex-1 overflow-hidden">
         <h3 className="font-medium text-[20px] leading-[26px] text-title">
           {tool.title}
@@ -33,12 +35,12 @@ export default function ResultItem({ tool }: ResultItemProps) {
         </p>
       </div>
 
-      {/* External link icon */}
+      {/* External link icon (only visible on hover or keyboard focus) */}
       <a
         href={tool.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-[26px] h-[26px] opacity-0 group-hover:opacity-100 transition-opacity"
+        className="w-[26px] h-[26px] opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:ring-2 focus-visible:ring-primary rounded transition-opacity"
       >
         <Image
           src="/icons/external-link.svg"

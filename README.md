@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DC Searchbox
 
-## Getting Started
+A modular, responsive search interface built with Next.js, TypeScript, and Tailwind CSS. This project was developed as part of a frontend evaluation for Digital Creative, focused on delivering a pixel-accurate, accessible, and performant UI.
 
-First, run the development server:
+## Features
+
+- Component-driven architecture using modern React (App Router)
+- Debounced search input with API integration
+- Result states: loading, no results, error handling
+- Keyboard accessibility and focus-visible enhancements
+- Mobile-first responsive layout
+- Type-safe implementation using shared interfaces
+- Clean separation of concerns between presentation and logic
+
+## Components Overview
+
+- `SearchBox` – Coordinates UI and state between input, tags, and results
+- `SearchBar` – Controlled input with debounced updates and focus handling
+- `Tag` – Selectable category filters with hover/active/focus states
+- `ResultList` – Handles visual state and renders matched results
+- `ResultItem` – Individual technology card with title, description, icon, and external link
+- `StatusBar` – Displays footer message based on current state
+- `Loading` – Displays a centered spinner using a custom SVG
+
+## Technical Stack
+
+- Framework: Next.js (App Router)
+- Language: TypeScript
+- Styling: Tailwind CSS + custom design tokens via CSS variables
+- Fonts: Poppins and Geist via `next/font`
+- Icons: FontAwesome + inline SVGs
+- API: Mocked search endpoint with simulated latency support
+
+## Project Structure
+
+```
+src/
+  app/
+    layout.tsx         # Global layout, fonts, and styling
+    page.tsx           # Main entry with SearchBox
+  components/          # All UI elements (search, tag, results, etc.)
+  hooks/
+    useSearch.ts       # Debounced API request hook with cancellation
+  lib/
+    fontawesome.ts     # FA core setup with styles injection disabled
+  types/
+    index.ts           # Shared types and interfaces
+  utils/
+    debounce.ts        # Reusable debounce function
+public/
+  icons/               # Inline SVGs (search, loading, external-link)
+  images/              # Error/empty state illustrations
+```
+
+## Setup Instructions
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Open in browser:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Development Notes
 
-## Learn More
+- Accessibility features include keyboard navigation and visible focus indicators.
+- Results automatically scroll if the list exceeds vertical space.
+- SVGs are optimized and animated via Tailwind’s `animate-spin` where applicable.
+- Layout and styles are responsive, with utility class fallbacks for mobile breakpoints.
 
-To learn more about Next.js, take a look at the following resources:
+## Testing Considerations
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This implementation was manually tested on Chromium-based browsers and mobile viewports. If this were a production deployment, additional layers such as unit tests (Jest + RTL), accessibility testing (axe-core), and E2E coverage (Playwright or Cypress) would be recommended.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Author Notes
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The implementation reflects the goal of clarity, maintainability, and user experience. All UI behavior matches the provided Figma design, with enhancements where appropriate (e.g. keyboard UX, mobile fallback behavior). All code has been reviewed for modern conventions and clean architecture.

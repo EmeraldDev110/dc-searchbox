@@ -5,22 +5,24 @@ import { debounce } from '@/utils/debounce'
 import Image from 'next/image'
 import clsx from 'clsx'
 
+// Props for the SearchBar component
 interface SearchBarProps {
-  value: string
-  onSearch: (term: string) => void
-  status?: 'default' | 'loading' | 'error'
+  value: string                        // Controlled value from parent
+  onSearch: (term: string) => void    // Triggered when user types
+  status?: 'default' | 'loading' | 'error' // Optional UI status indicator
 }
 
 export default function SearchBar({ value, onSearch, status = 'default' }: SearchBarProps) {
   const [input, setInput] = useState(value)
   const [isFocused, setIsFocused] = useState(false)
 
-  // Keep internal input in sync with external value
+  // Keep local input state in sync when parent updates `value`
   useEffect(() => {
     setInput(value)
   }, [value])
 
-  // Debounced search function for user typing
+  // Debounced search callback for smoother UX during typing
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSearch = useCallback(
     debounce((val: string) => {
       onSearch(val)
@@ -28,13 +30,15 @@ export default function SearchBar({ value, onSearch, status = 'default' }: Searc
     [onSearch]
   )
 
-  // Only call onSearch through debounce if user typed (not from props)
+  // Only trigger debounced search if user manually types (not on prop change)
   useEffect(() => {
     if (input !== value) {
       debouncedSearch(input)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [input])
 
+  // Determine border color based on focus and status
   const borderClass = clsx({
     'border-[3px] border-primary': isFocused || status === 'loading',
     'border-[3px] border-error': status === 'error',
@@ -48,7 +52,10 @@ export default function SearchBar({ value, onSearch, status = 'default' }: Searc
         borderClass
       )}
     >
+      {/* Search icon (SVG) */}
       <Image src="/icons/search.svg" alt="Search Icon" width={24} height={24} />
+
+      {/* Search input field */}
       <input
         type="text"
         placeholder="Search what technologies we are using at DC..."

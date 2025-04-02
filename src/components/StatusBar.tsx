@@ -9,6 +9,7 @@ interface StatusBarProps {
 export default function StatusBar({ loading, error, resultCount }: StatusBarProps) {
   let message = ''
 
+  // Prioritize loading > error > empty > result count
   if (loading) {
     message = 'Searching ...'
   } else if (error) {
